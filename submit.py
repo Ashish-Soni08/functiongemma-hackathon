@@ -1,27 +1,27 @@
 """
-Submit your solution to the FunctionGemma Hackathon leaderboard.
+Submit your solution to the Cactus Evals leaderboard.
 
 Usage:
-    python submit.py --team "YourTeamName"
+    python submit.py --team "YourTeamName" --location "SF"
 """
 
 import argparse
 import time
 import requests
 
-SERVER_URL = "https://khalilah-unbibulous-carlena.ngrok-free.dev"
+SERVER_URL = "https://cactusevals.ngrok.app"
 HEADERS = {"ngrok-skip-browser-warning": "true"}
 
 
-def submit(team):
+def submit(team, location):
     print("=" * 60)
-    print(f"  Submitting main.py for team '{team}'")
+    print(f"  Submitting main.py for team '{team}' ({location})")
     print("=" * 60)
 
     with open("main.py", "rb") as f:
         resp = requests.post(
             f"{SERVER_URL}/eval/submit",
-            data={"team": team},
+            data={"team": team, "location": location},
             files={"file": ("main.py", f, "text/x-python")},
             headers=HEADERS,
         )
@@ -80,7 +80,8 @@ def submit(team):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Submit to FunctionGemma Hackathon Leaderboard")
+    parser = argparse.ArgumentParser(description="Submit to Cactus Evals Leaderboard")
     parser.add_argument("--team", type=str, required=True, help="Your team name")
+    parser.add_argument("--location", type=str, required=True, help="Your location (e.g. SF, NYC, London)")
     args = parser.parse_args()
-    submit(args.team)
+    submit(args.team, args.location)

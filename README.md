@@ -4,14 +4,15 @@
 - Cactus runs Google DeepMind's FunctionGemma at up to 3000 toks/sec prefill speed on M4 Macs.
 - While decode speed reaches 200 tokens/sec, all without GPU, to remain energy-efficient. 
 - FunctionGemma is great at tool calling, but small models are not the smartest for some tasks. 
-- There is a need to dynamically combine edge and cloud (Gemini 3.1) to get the best of both worlds. 
-- Cactus developed various strategies for choosing when to fall back to Gemini or FunctionGemma.
+- There is a need to dynamically combine edge and cloud (Gemini Flash) to get the best of both worlds. 
+- Cactus develops various strategies for choosing when to fall back to Gemini or FunctionGemma.
 
 ## Challenge
 - FunctionGemma is just a tool-call model, but tool calling is the core of agentic systems. 
 - You MUST design new strategies that decide when to stick with on-device or fall to cloud. 
 - You will be objectively ranked on tool-call correctness, speed and edge/cloud ratio (priortize local). 
 - You can focus on prompting, tool description patterns, confidence score algorithms, anything!
+- Please ensure at least 1 team member has a Mac, Cactus runs on Macs, mobile devices and wearables.
 
 ## Setup (clone this repo and hollistically follow)
 - Step 1: Fork this repo, clone to your Mac, open terminal.
@@ -31,10 +32,10 @@
 
 ## Submissions
 - Do not modify the `generate_hybrid` keep the hybrid interface compatible with benchmark.py.
-- Submit to the leaderboard `python submit.py --team "YourTeamName"`, only 1x every 1hr.
+- Submit to the leaderboard `python submit.py --team "YourTeamName" --location "YourCity"`, only 1x every 1hr.
 - The dataset is a hidden Cactus eval, quite difficult for FunctionGemma by design.
 - Use `python benchmark.py` to iterate, but your best score is preserved.
-- For transparency, hackers can see live rankings on the [leaderboard](https://khalilah-unbibulous-carlena.ngrok-free.dev), 
+- For transparency, hackers can see live rankings on the [leaderboard](https://cactusevals.ngrok.app), 
 - The top 10 in each location will make it to judging.
 
 ## Qualitative Judging 
